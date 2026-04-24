@@ -90,20 +90,55 @@ const CustomCursor = () => {
 };
 
 const Logo = ({ className = "" }) => (
-  <div className={`flex items-center gap-3 ${className}`}>
-    <div className="relative w-10 h-10 flex items-center justify-center">
+  <div className={`flex items-center gap-4 ${className}`}>
+    <div className="relative w-12 h-12 flex items-center justify-center">
       <motion.div
         animate={{ 
-          rotate: [0, 10, 0],
-          scale: [1, 1.05, 1]
+          rotate: [0, 90, 180, 270, 360],
+          opacity: [0.1, 0.2, 0.1]
         }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute inset-0 bg-brand-primary/10 rounded-xl"
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        className="absolute inset-0 bg-brand-primary/10 rounded-2xl blur-sm"
       />
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="relative z-10 text-brand-primary">
-        <path d="M4 4C4 4 9 4 12 12C15 20 20 20 20 20" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-        <path d="M4 20C4 20 9 20 12 12C15 4 20 4 20 4" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
-        <path d="M12 12H20" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" opacity="0.5" />
+      <svg 
+        viewBox="0 0 100 100" 
+        fill="none" 
+        xmlns="http://www.w3.org/2000/svg"
+        className="relative z-10 w-full h-full drop-shadow-sm"
+      >
+        <defs>
+          <linearGradient id="kaze-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#6366f1" />
+            <stop offset="100%" stopColor="#4f46e5" />
+          </linearGradient>
+        </defs>
+        <motion.path 
+          d="M30 20C35 40 35 60 30 80" 
+          stroke="url(#kaze-grad)" 
+          strokeWidth="10" 
+          strokeLinecap="round"
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+        />
+        <motion.path 
+          d="M35 50C55 50 70 35 75 25" 
+          stroke="#818cf8" 
+          strokeWidth="8" 
+          strokeLinecap="round" 
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ duration: 1.5, delay: 0.2, ease: "easeOut" }}
+        />
+        <motion.path 
+          d="M35 55C55 55 65 70 70 85" 
+          stroke="url(#kaze-grad)" 
+          strokeWidth="8" 
+          strokeLinecap="round" 
+          initial={{ pathLength: 0 }}
+          animate={{ pathLength: 1 }}
+          transition={{ duration: 1.5, delay: 0.4, ease: "easeOut" }}
+        />
       </svg>
     </div>
     <span className={`text-2xl font-display font-bold tracking-tight ${className.includes('text-white') ? 'text-white' : 'text-brand-dark'}`}>
