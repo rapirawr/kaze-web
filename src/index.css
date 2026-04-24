@@ -1,0 +1,113 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@100;200;300;400;500;600;700;800;900&family=Archivo+Black&display=swap');
+
+@theme {
+  --color-brand-primary: #6366f1;
+  --color-brand-secondary: #4f46e5;
+  --color-brand-dark: #0F172A;
+  --color-brand-bg: #F8FAFC;
+  --color-brand-surface: #FFFFFF;
+  --color-brand-accent: #818cf8;
+  
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Outfit", sans-serif;
+  --font-headline: "Archivo Black", sans-serif;
+}
+
+:root {
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply antialiased text-brand-dark bg-brand-bg font-body;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-display tracking-tight font-bold;
+}
+
+/* Custom Grain Texture Overlay */
+.grain-bg::after {
+  content: "";
+  position: fixed;
+  top: -150%;
+  left: -150%;
+  width: 300%;
+  height: 300%;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 9999;
+  animation: noise 8s steps(10) infinite;
+}
+
+@keyframes noise {
+  0%, 100% { transform:translate(0, 0) }
+  10% { transform:translate(-5%, -10%) }
+  20% { transform:translate(-15%, 5%) }
+  30% { transform:translate(7%, -25%) }
+  40% { transform:translate(-5%, 25%) }
+  50% { transform:translate(-15%, 10%) }
+  60% { transform:translate(15%, 0%) }
+  70% { transform:translate(0%, 15%) }
+  80% { transform:translate(3%, 35%) }
+  90% { transform:translate(-10%, 10%) }
+}
+
+/* Wave Animations */
+@keyframes wave-flow {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-25%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-wave {
+  animation: wave-flow 20s ease-in-out infinite;
+}
+
+.animate-wave-slow {
+  animation: wave-flow 30s ease-in-out infinite;
+}
+
+.animate-wave-fast {
+  animation: wave-flow 15s ease-in-out infinite;
+}
+
+/* Glassmorphism Variants */
+.glass-light {
+  @apply bg-white/40 backdrop-blur-xl border border-white/40;
+}
+
+.glass-dark {
+  @apply bg-brand-dark/80 backdrop-blur-2xl border border-white/10;
+}
+
+.glass-card {
+  @apply bg-white/60 backdrop-blur-lg border border-white/40 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)];
+}
+
+/* Text Gradient */
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-primary via-brand-secondary to-brand-accent;
+}
+
+/* Custom Selection */
+::selection {
+  @apply bg-brand-primary text-white;
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .rotate-x-10 {
+    transform: rotateX(10deg);
+  }
+}
+
